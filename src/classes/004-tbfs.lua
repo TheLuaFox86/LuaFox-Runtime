@@ -59,7 +59,7 @@ do
   	argc(type(fr) == 'string', 'invalid argument #1; expected string got ' .. type(fr))
   	argc(type(to) == 'string', 'invalid argument #2; expected string got ' .. type(to))
   	argc(fs.exists(fr), 'file not found; ' .. fr)
-    local tb = table.parse(fw.readAll('*all'))
+    local tb = table.parse(fs.readAll(fr))
     for path, stats in pairs(tb) do
       fs.create(to .. path, stats.content)
     end

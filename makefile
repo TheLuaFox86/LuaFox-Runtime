@@ -1,10 +1,11 @@
 linux:
+	mkdir -p /usr/local/lib/lua/5.3
+	mkdir -p /usr/local/share/lua/5.3
 	cd lfpp/ && make
 	cp src/lfastr.lua /usr/local/lib/lua/5.3
-	lua targets/Linux.lua
 	mkdir lfrt
-	mv init.lua lfrt
 	cp src/lfar.lua lfrt
+	lua targets/Linux.lua
 	mkdir -p $(HOME)/.config/lfrt
 	mkdir -p $(HOME)/.config/lfrt/lib
 	mkdir -p $(HOME)/.config/lfrt/prg
@@ -28,12 +29,13 @@ clean-full:
 	$(MAKE) clean
 
 luafoxOS:
-	cd lfpp/ && make luafoxOS
+	mkdir -p /usr/local/lib/lua/5.3
+	mkdir -p /usr/local/share/lua/5.3
+	cd lfpp/ && make
 	cp src/lfastr.lua /usr/local/lib/lua/5.3
-	lua targets/Linux.lua
 	mkdir lfrt
-	mv init.lua lfrt
 	cp src/lfar.lua lfrt
+	lua targets/Linux.lua
 	mkdir -p $(HOME)/.config/lfrt
 	mkdir -p $(HOME)/.config/lfrt/lib
 	mkdir -p $(HOME)/.config/lfrt/prg

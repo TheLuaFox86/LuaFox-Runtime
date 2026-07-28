@@ -1,11 +1,18 @@
 echo "make sure to run with sudo"
-apt update
-apt install build-essential luarocks libgirepository-2.0-dev libglib2.0-dev 
-apt install lua5.3 liblua5.3-dev 
-apt install luarocks git
+apt install git
 apt install wget curl
-mdkir -p /usr/lcoal/lib/lua/5.3
+# install luaver
+apt update
+apt install build-essential libgirepository-2.0-dev libglib2.0-dev 
+sudo apt-get install libreadline-dev 
+curl -fsSL https://raw.githubusercontent.com/dhavalkapil/luaver/master/install.sh | sh -s - -r v1.1.0
+#install the rest
+mkdir -p /usr/local/lib/lua/5.3
 wget https://raw.githubusercontent.com/pkulchenko/serpent/refs/heads/master/src/serpent.lua -O /usr/local/lib/lua/5.3/serpent.lua
+. ~/.bashrc #reset shell
+luaver install 5.3.6
+luaver install-luarocks 3.13.0
+#install deps
 luarocks install pegasus
 luarocks install lunajson
 luarocks install luagobject

@@ -16,9 +16,8 @@ if class:config("Beta-Mode") or _PLATFORM[1] == "luafoxOS" then
 			local win = obj0
 			win._window = Gtk.Window(obj)
 			win._obj = Gtk.Box({
-					orientation = Gtk.Orientation.VERTICAL,
+				orientation = Gtk.Orientation.VERTICAL,
 				spacing = 10,
-				margin = 15
 			})
 			win._window:add(win._obj)
 			function win:show()

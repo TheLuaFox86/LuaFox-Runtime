@@ -1,6 +1,6 @@
 [editor]
-line_wrapping=false
-line_break_column=72
+line_wrapping=true
+line_break_column=50
 auto_continue_multiline=true
 
 [file_prefs]
@@ -13,28 +13,33 @@ replace_tabs=false
 indent_width=2
 indent_type=1
 indent_hard_tab_width=8
-detect_indent=false
+detect_indent=true
 detect_indent_width=false
 indent_mode=2
 
 [project]
 name=LuaFox-Runtime
-base_path=/home/LuaFox/Documents/LuaFox-Runtime
+base_path=/sdcard/Documents/LuaFox-Runtime
 description=
 file_patterns=
 
 [long line marker]
-long_line_behaviour=1
-long_line_column=72
+long_line_behaviour=2
+long_line_column=40
 
 [files]
-current_page=0
-FILE_NAME_0=1090;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F006-lfpk.lua;0;2
-FILE_NAME_1=64;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F005-json.lua;0;2
-FILE_NAME_2=0;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime-Develoupment-Program%2Fsrc%2FData%2Flib%2F001-json.lua;0;2
+current_page=7
+FILE_NAME_0=1;None;0;EUTF-8;1;1;1;%2Fsdcard%2FDocuments%2FBackups%2Fgis_L0O3S3;0;2
+FILE_NAME_1=64;Lua;0;EUTF-8;1;1;1;%2Fsdcard%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F005-json.lua;0;2
+FILE_NAME_2=552;Lua;0;EUTF-8;0;1;1;%2Fsdcard%2FDocuments%2FLuaFox-Runtime%2Ftargets%2FLinux.lua;0;2
+FILE_NAME_3=426;Lua;0;EUTF-8;1;1;1;%2Fsdcard%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Finterface.lua;0;2
+FILE_NAME_4=0;Lua;0;EUTF-8;0;1;1;%2Fsdcard%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasstypes%2F001-api.lua;0;2
+FILE_NAME_5=0;Lua;0;EUTF-8;1;1;1;%2Fsdcard%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F002-term.lua;0;2
+FILE_NAME_6=0;Lua;0;EUTF-8;0;1;1;%2Fsdcard%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F356-runtime.lua;0;2
+FILE_NAME_7=3944;Lua;0;EUTF-8;0;1;1;%2Fsdcard%2FDocuments%2FLuaFox-Runtime%2Fsrc%2FMAIN.lua;0;2
 
 [VTE]
-last_dir=/mnt/sdcard/Documents/LuaFox-Runtime/src/classes
+last_dir=/home/LuaFox
 
 [build-menu]
 NF_00_LB=make for linux

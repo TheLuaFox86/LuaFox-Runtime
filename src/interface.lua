@@ -2,7 +2,7 @@
 local lfar = require('lfrt.lfar')
 local lfrt = {}
 local function buff(data, ch)
-	return '--[[' .. ch .. ']]--\n local f, r = load(' .. string.format('%q, %q, ', data, '=' .. ch) .. '"t", _ENV)\nif f then local ok, re =  pcall(f, ...)\n if not ok then log(re) end else log(tostring(r)) end\n'
+	return '--[[' .. ch .. ']]--\n local f, r = load(' .. string.format('%q, %q, ', data .. "\nfor k, v in pairs(_G) do\n--log(k)\n if not _ENV[k] or k == \"class\" then _ENV[k] = v\n--log(true)\nelse\n--log(false)\nend end", '=' .. ch) .. '"t", _ENV)\nif f then ok, re =  pcall(f, ...)\n if not ok then log(re) end else log(tostring(r)) end\n'
 end
 
 function lfrt.run_new(buffer, path, ...)

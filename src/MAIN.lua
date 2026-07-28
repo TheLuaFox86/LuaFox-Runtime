@@ -1,3 +1,12 @@
+_G.argc = function(value, msg, lv, ...)
+	for k, v in pairs({value, ...}) do
+    if not v then
+      error(msg, (lv or 3))
+    else
+      return value
+    end
+  end
+end
 _G.class =  {}
 class._searchers = {
 'lfrt',
@@ -11,12 +20,14 @@ function class:addSearcher(name, place)
 	self._searchers[i] = name
 end
 function class:append(tb)
-	assert(type(tb) == "ClassType", "Invalid Argument #1: ClassType Expected Got: " .. type(tb), 2)
+	  argc(type(tb):match("ClassType "), "argument #1: expected ClassType got ", type(tb))
   if not self[tb.domain] then self[tb.domain] = {} end
   self[tb.domain][tb.type] = tb
   self._types[tb.type] = tb
 end
 function class:getById(t, id)
+  argc(type(t) == "string", "argument #1: expected string got ", type(t))
+  argc(type(id) == "string", "argument #2: expected string got ", type(t))
   local a = {}
   for i, v in ipairs(id:split(":")) do
     a[i]=v
@@ -36,15 +47,22 @@ function class:getById(t, id)
     end
   end
   if not self[a[1]] then
-	return nil
+    return nil
   elseif not self[a[1]][t] then
-	return nil
+    return nil
   elseif not self[a[1]][t][a[2]] then
-	return nil
-end
-  return self[a[1]][t][a[2]]
+    return nil
+  end
+  local b = {}
+  for k, v in pairs(self[a[1]][t][a[2]]) do
+    b[k] = v
+  end
+  return b
 end
 function class:setById(t, id, val)
+  argc(type(t) == "string", "argument #1: expected string got ", type(t))
+  argc(type(id) == "string", "argument #2: expected string got ", type(t))
+  argc(type(val):match("Class "), "argument #1: expected Class got ", type(t))
   local a = {}
   for i, v in ipairs(id:split(":")) do
     a[i]=v
@@ -74,6 +92,7 @@ function class:setById(t, id, val)
 function class:newType(id, tb)
   tb.domain = id:split(":")[1]
   tb.type = id:split(":")[2]
+  tb.id = id
   log("creating classtype: " .. tb.type or "?")
   local out = setmetatable(tb, {__index = function(s, k)
     if k == id:split(":")[2] then
@@ -82,23 +101,31 @@ function class:newType(id, tb)
         local obj = setmetatable(a, {__index = function(_s, _k)
           if _k == "push" then
             return function()
-              class:setById(tb.type, rawget(s, "id"))
+              local c = {}
+              for k, _ in pairs(_s) do
+                c[k] = rawget(_s, k)
+              end
+              class:setById(tb.type, rawget(s, "id"), c)
             end 
           elseif _k == "pull" then
             return function()
-              _s = class:getById(s.id)
+                for k, v in pairs(class:getById(tb.type, rawget(s, "id"))) do
+                  rawset(_s, k, v)
+                end
             end
           else
             return rawget(_s, _k)
           end
-        end, __type=id})
+        end, __newindex = function(_s, k, v)
+            rawset(_s, k, v)
+        end, __type="Class " .. id})
         class:setById(s.type, obj.id, obj)
         log('added class: ' .. obj.id .. ' of type [' .. id:split(':')[2] .. ']')
       end
     else
       return rawget(s, k)
   	end
-  end, __type="ClassType"})
+  end, __type="ClassType " .. id})
   return out
 end
 function class:getAPI(id, version)
@@ -113,15 +140,25 @@ function class:getAPI(id, version)
   b.version = version
   setmetatable(b, {__index=function(s, k)
     if k == "pull" then
-      s = _G.class:getById('api', id).VERSIONS[version]
+      return function()
+        s = _G.class:getById('api', id).VERSIONS[version]
+      end
     elseif k == 'push' then
-      local c = _G.class:getById('api', id)
-      c.VERSIONS[version] = s
-      _G.class:setById('api', id, class)
+      return function()
+        local c = _G.class:getById('api', id)
+        local d = {}
+        for _k, _v in pairs(s) do
+          d[_k] = rawget(s, _k)
+        end
+        c.VERSIONS[version] = d
+        _G.class:setById('api', id, c)
+      end
     else
     	return rawget(s, k)
     end
-  end, __type="lfrt:api"})
+  end, __newindex = function(s, k, v)
+    rawset(s, k, v)
+  end, __type="Class lfrt:api"})
   return b
 end
 function class:config(key)
