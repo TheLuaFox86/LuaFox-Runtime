@@ -1,18 +1,18 @@
 linux:
-	mkdir -p /usr/local/lib/lua/5.3
-	mkdir -p /usr/local/share/lua/5.3
-	cd lfpp/ && make
-	cp src/lfastr.lua /usr/local/lib/lua/5.3
+	sudo mkdir -p /usr/local/lib/lua/5.3
+	sudo mkdir -p /usr/local/share/lua/5.3
+	cd lfpp/ && sudo make
+	sudo cp src/lfastr.lua /usr/local/lib/lua/5.3
 	mkdir lfrt
 	cp src/lfar.lua lfrt
 	lua targets/Linux.lua
 	mkdir -p $(HOME)/.config/lfrt
 	mkdir -p $(HOME)/.config/lfrt/lib
 	mkdir -p $(HOME)/.config/lfrt/prg
-	cp -r lfrt /usr/local/share/lua/5.3
-	cp src/lfrtcl.lua $(HOME)/.config/lfrt
-	cp src/lfrt-bin-linux.sh /usr/bin/lfrt
-	chmod a+x /usr/bin/lfrt
+	sudo cp -r lfrt /usr/local/share/lua/5.3
+	sudo cp src/lfrtcl.lua $(HOME)/.config/lfrt
+	sudo cp src/lfrt-bin-linux.sh /usr/bin/lfrt
+	sudo chmod a+x /usr/bin/lfrt
 	
 
 linux-full:

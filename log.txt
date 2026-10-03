@@ -1,9 +1,40 @@
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
+1	launch	
+2	launcher	
+/home/luafox/Documents/LuaFox-Runtime/.lfar-84018/	
+--[LuaFox Runtime Initialization]--	
+creating classtype: api	
+creating api: lfrt:term version 0	
+added class: lfrt:term of type [api]	
+creating api: lfrt:term version 1	
+added class: lfrt:term of type [api]	
+creating api: lfrt:term version 2	
+added class: lfrt:term of type [api]	
+creating api: lfrt:filesystem version 0	
+added class: lfrt:filesystem of type [api]	
+creating api: lfrt:filesystem version 1	
+added class: lfrt:filesystem of type [api]	
+creating api: lfrt:tbfs version 0	
+added class: lfrt:tbfs of type [api]	
+creating api: lfrt:tbfs version 1	
+added class: lfrt:tbfs of type [api]	
+creating api: lfrt:json version 0	
+added class: lfrt:json of type [api]	
+creating api: lfrt:lfpk version 0	
+added class: lfrt:lfpk of type [api]	
+checking for luagoobject	
+found!	
+creating classtype: window	
+creating classtype: label	
+creating classtype: button	
+creating classtype: entry	
+creating api: lfrt:runtime version 0	
+added class: lfrt:runtime of type [api]	
+creating api: lfrt:runtime version 1	
+added class: lfrt:runtime of type [api]	
+--[Appliation Start]--	
+added class: LuaFoxYT:window of type [window]	
+added class: LuaFoxYT:Label0 of type [label]	
+added class: LuaFoxYT:num of type [entry]	
+added class: LuaFoxYT:launchAsGFX of type [button]	
+added class: LuaFoxYT:launchAsTerm of type [button]	
+added class: LuaFoxYT:lfrt-v-dsp of type [label]	

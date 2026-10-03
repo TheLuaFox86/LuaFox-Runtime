@@ -1,9 +1,9 @@
 --luafox ui library--
-if class:config("Beta-Mode") or _PLATFORM[1] == "luafoxOS" then
+if true then
 	log("checking for luagoobject")
 	local ok, lgi = pcall(require, "LuaGObject")
 	if lgi then log("found!") else error("Could Not Load LFui: not found are you on linux if so make sure you installed LuaGObject and its dependancies", 0) end
-	local Gtk = lgi.Gtk
+	local Gtk = lgi.require("Gtk", '3.0')
 	local gio = lgi.Gio
 	local glib = lgi.GLib
 	class:append(class:newType("lfui:window", {

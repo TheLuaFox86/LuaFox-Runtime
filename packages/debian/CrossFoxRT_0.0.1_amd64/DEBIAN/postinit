@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+# Find the actual invoking user if installed via sudo
+TARGET_USER=${SUDO_USER:-$USER}
+TARGET_HOME=$(getent passwd "$TARGET_USER" | cut -d: -f6)
+
+if [ -n "$TARGET_HOME" ] && [ -d "$TARGET_HOME" ]; then
+    # Ensure the user's .config directory exists
+    mkdir -p "$TARGET_HOME/.config"
+    
+    # Copy the entire lfrt directory recursively to .config/
+    cp -r /usr/share/crossfoxrt/lfrtcfg "$TARGET_HOME/.config/"
+    
+    # Fix ownership so the normal user owns the folder and everything inside it
+    chown -R "$TARGET_USER:$TARGET_USER" "$TARGET_HOME/.config/lfrt"
+fi
+
+exit 0
